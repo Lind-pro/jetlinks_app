@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jetlinks_app/commom/provider/app.dart';
 
 class ProfilePage extends StatefulWidget {
   ProfilePage({Key key}) : super(key: key);
@@ -9,13 +8,16 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  AppState _appState;
+  @override
+  void initState() {
+    super.initState();
+    print('profile init');
+  }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child: Column(children: [Text('Profile')]),
+    return Container(
+      child: Text('Profile Page'),
     );
   }
 }

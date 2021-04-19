@@ -15,5 +15,6 @@ class Routes {
     });
 
     router.define(root, handler: applicationHandler);
+    router.define(login, handler: loginPageHandler);
   }
 }

@@ -10,12 +10,18 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin {
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Text('APPP'),
-    );
+  bool get wantKeepAlive => true;
+
+  @override
+  void initState() {
+    super.initState();
+    print("home init");
   }
 
   @override
-  bool get wantKeepAlive => throw UnimplementedError();
+  Widget build(BuildContext context) {
+    return Container(
+      child: Text('HomePage'),
+    );
+  }
 }

@@ -3,6 +3,8 @@ import 'package:jetlinks_app/commom/router/application.dart';
 import 'package:jetlinks_app/commom/values/colors.dart';
 import 'package:jetlinks_app/commom/widgets/app.dart';
 import 'package:jetlinks_app/global.dart';
+import 'package:jetlinks_app/pages/alarm/index.dart';
+import 'package:jetlinks_app/pages/device/index.dart';
 import 'package:jetlinks_app/pages/home/index.dart';
 import 'package:jetlinks_app/pages/profile/index.dart';
 import 'package:jetlinks_app/utils/font.dart';
@@ -18,28 +20,28 @@ class ApplicationPage extends StatefulWidget {
 class _ApplicationPageState extends State<ApplicationPage>
     with SingleTickerProviderStateMixin {
   int _page = 0;
-  final List<String> _tabTitles = ["首页", "装备", "维保", "告警", "我的"];
+  final List<String> _tabTitles = ["首页", "装备", "告警", "我的"];
   final List<BottomNavigationBarItem> _bottomTabs = <BottomNavigationBarItem>[
     // home
     new BottomNavigationBarItem(
         icon: Icon(Iconfont.home, color: AppColors.tabBarElement),
         activeIcon: Icon(Iconfont.home, color: AppColors.fontBlue),
-        label: '1',
+        label: '首页',
         backgroundColor: AppColors.white),
     new BottomNavigationBarItem(
         icon: Icon(Iconfont.hot, color: AppColors.tabBarElement),
         activeIcon: Icon(Iconfont.hot, color: AppColors.bgBlue),
-        label: '2',
+        label: '装备',
         backgroundColor: AppColors.white),
     new BottomNavigationBarItem(
         icon: Icon(Iconfont.message, color: AppColors.tabBarElement),
         activeIcon: Icon(Iconfont.message, color: AppColors.bgBlue),
-        label: '2',
+        label: '告警',
         backgroundColor: AppColors.white),
     new BottomNavigationBarItem(
         icon: Icon(Iconfont.profile, color: AppColors.tabBarElement),
         activeIcon: Icon(Iconfont.profile, color: AppColors.fontBlue),
-        label: '3',
+        label: '我的',
         backgroundColor: AppColors.white)
   ];
 
@@ -72,7 +74,12 @@ class _ApplicationPageState extends State<ApplicationPage>
   Widget _buildBody() {
     return PageView(
       physics: NeverScrollableScrollPhysics(),
-      children: <Widget>[HomePage(), ProfilePage()],
+      children: <Widget>[
+        HomePage(),
+        DevicePage(),
+        AlarmPage(),
+        ProfilePage(),
+      ],
       controller: _pageController,
       onPageChanged: _handlePageChanged,
     );

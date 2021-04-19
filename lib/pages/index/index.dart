@@ -27,12 +27,16 @@ class _IndexPageState extends State<IndexPage> {
   Widget build(BuildContext context) {
     final router = FluroRouter();
     Routes.configureRoutes(router);
+    Application.router = router;
+
     return ScreenUtilInit(
+        designSize: Size(375, 734),
+        allowFontScaling: false,
         builder: () => MaterialApp(
               builder: (context, child) => FlutterSmartDialog(child: child),
               title: 'Jetlinks',
               home: Scaffold(body: ApplicationPage()),
-              // onGenerateRoute: Application.router.generator,
+              onGenerateRoute: Application.router.generator,
               debugShowCheckedModeBanner: false,
             ));
   }

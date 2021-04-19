@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:cookie_jar/cookie_jar.dart';
@@ -76,14 +77,16 @@ class HttpUtil {
           return options; //continue
         },
         onResponse: (Response response) {
-          if (response.data['code'] == 2) {
+          print(response);
+          if (response.data['code'] == 403) {
             toastInfo(msg: '权限不足');
             throw ('error');
           }
           return response; // continue
         },
         onError: (DioError e) {
-          return createErrorMessage('-1');
+          print(e);
+          return e.response;
         },
       ),
     );
@@ -220,18 +223,16 @@ class HttpUtil {
       if (_authorization != null) {
         requestOptions = requestOptions.merge(headers: _authorization);
       }
-      FormData data = FormData.fromMap(params);
+      // FormData data = FormData.fromMap(params);
       var response = await dio.post(
         path,
-        data: data,
+        data: params,
         options: requestOptions,
         cancelToken: cancelToken,
       );
-      return {
-        "data": response.data,
-        "headers": response.headers,
-      };
+      return response;
     } on DioError catch (e) {
+      print(e);
       throw createErrorMessage('-1');
     }
   }
